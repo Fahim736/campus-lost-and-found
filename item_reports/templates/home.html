@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="row align-items-center py-4 bg-white p-4 rounded shadow-sm">
+    <div class="col-md-4 text-center mb-3 mb-md-0">
+        <!-- Profile Picture (GitHub Avatar) -->
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/15878046636161085_0" 
+             class="rounded-circle img-fluid shadow-sm" 
+             alt="K.M. MAHIBUL ISLAM FAHIM" 
+             style="width: 180px; height: 180px; object-fit: cover;">
+    </div>
+    <div class="col-md-8">
+        <!-- Name -->
+        <h1 class="display-5 fw-bold">K.M. MAHIBUL ISLAM FAHIM</h1>
+        
+        <!-- Title & Bio -->
+        <p class="lead text-primary">Web Developer | Python & Django Enthusiast</p>
+        <p class="text-muted">
+            Welcome to my portfolio! I am a passionate web developer focused on building clean, efficient, and user-friendly web applications using Python and Django.
+        </p>
+
+        <!-- Skills Section -->
+        <h4 class="mt-4">Skills</h4>
+        <div class="d-flex flex-wrap gap-2 mb-4">
+            <span class="badge bg-primary fs-6">Python</span>
+            <span class="badge bg-success fs-6">Django</span>
+            <span class="badge bg-secondary fs-6">HTML5 & CSS3</span>
+            <span class="badge bg-warning text-dark fs-6">Bootstrap</span>
+            <span class="badge bg-dark fs-6">Git & GitHub</span>
+        </div>
+
+        <div>
+            <a href="{% url 'projects_list' %}" class="btn btn-primary me-2">Explore Projects</a>
+            <a href="{% url 'about' %}" class="btn btn-outline-secondary">About Me</a>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="mt-5 p-4 bg-white rounded shadow-sm">
+    <h3>Get In Touch</h3>
+    <p class="text-muted">Feel free to reach out to me for collaborations or queries.</p>
+    <ul class="list-unstyled">
+        <li><strong>Email:</strong> mahibulfahim@gmail.com</li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/Fahim736" target="_blank">https://github.com/Fahim736</a></li>
+    </ul>
+</div>
+{% endblock %}

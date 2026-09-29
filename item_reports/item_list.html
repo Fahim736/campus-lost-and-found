@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Reports</title>
+</head>
+<body>
+
+    <h1>Item Reports</h1>
+
+    <a href="{% url 'item_create' %}">Add New Item</a>
+
+    <hr>
+
+    {% for item in items %}
+        <h3>{{ item.name }}</h3>
+        <p>Quantity: {{ item.quantity }}</p>
+        <p>Price: {{ item.price }}</p>
+
+        <a href="{% url 'item_update' item.id %}">Edit</a>
+        <a href="{% url 'item_delete' item.id %}">Delete</a>
+
+        <hr>
+    {% empty %}
+        <p>No items found.</p>
+    {% endfor %}
+
+</body>
+</html>

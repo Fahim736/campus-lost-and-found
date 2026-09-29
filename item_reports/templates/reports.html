@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>All Reports</h1>
+
+<form method="GET">
+
+    <input
+        type="text"
+        name="item_name"
+        placeholder="Search item name"
+        value="{{ item_name }}"
+    >
+
+    <input
+        type="text"
+        name="category"
+        placeholder="Category"
+        value="{{ category }}"
+    >
+
+    <select name="type">
+        <option value="">All Types</option>
+
+        <option value="Lost"
+            {% if selected_type == 'Lost' %}selected{% endif %}>
+            Lost
+        </option>
+
+        <option value="Found"
+            {% if selected_type == 'Found' %}selected{% endif %}>
+            Found
+        </option>
+    </select>
+
+    <select name="status">
+        <option value="">All Status</option>
+
+        <option value="Active"
+            {% if selected_status == 'Active' %}selected{% endif %}>
+            Active
+        </option>
+
+        <option value="Resolved"
+            {% if selected_status == 'Resolved' %}selected{% endif %}>
+            Resolved
+        </option>
+    </select>
+
+    <button type="submit">Search</button>
+
+    <a href="{% url 'reports' %}">Clear</a>
+
+</form>
+
+<hr>
+
+{% if reports %}
+
+    {% for report in reports %}
+
+        <div>
+            <h2>{{ report.item_name }}</h2>
+
+            <p>
+                <strong>Type:</strong> {{ report.type }}
+            </p>
+
+            <p>
+                <strong>Category:</strong> {{ report.category }}
+            </p>
+
+            <p>
+                <strong>Location:</strong> {{ report.location }}
+            </p>
+
+            <p>
+                <strong>Status:</strong> {{ report.status }}
+            </p>
+
+            <a href="{% url 'report_detail' report.pk %}">
+                View Details
+            </a>
+        </div>
+
+        <hr>
+
+    {% endfor %}
+
+{% else %}
+
+    <p>No reports found.</p>
+
+{% endif %}
+
+{% endblock %}

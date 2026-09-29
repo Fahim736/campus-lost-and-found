@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ report.item_name }}</h1>
+
+<p>
+    <strong>Type:</strong> {{ report.type }}
+</p>
+
+<p>
+    <strong>Category:</strong> {{ report.category }}
+</p>
+
+<p>
+    <strong>Description:</strong> {{ report.description }}
+</p>
+
+<p>
+    <strong>Location:</strong> {{ report.location }}
+</p>
+
+<p>
+    <strong>Date:</strong> {{ report.date }}
+</p>
+
+<p>
+    <strong>Contact:</strong> {{ report.contact }}
+</p>
+
+<p>
+    <strong>Status:</strong> {{ report.status }}
+</p>
+
+{% if report.image %}
+    <p>
+        <strong>Image:</strong>
+    </p>
+
+    <img
+        src="{{ report.image.url }}"
+        alt="{{ report.item_name }}"
+        width="300"
+    >
+{% endif %}
+
+<hr>
+
+{% if user == report.user %}
+
+    <a href="{% url 'update_report' report.pk %}">
+        Edit Report
+    </a>
+
+    <form
+        method="POST"
+        action="{% url 'delete_report' report.pk %}"
+        style="display:inline;"
+    >
+        {% csrf_token %}
+
+        <button type="submit">
+            Delete Report
+        </button>
+    </form>
+
+    {% if report.status == 'Active' %}
+
+        <form
+            method="POST"
+            action="{% url 'resolve_report' report.pk %}"
+            style="display:inline;"
+        >
+            {% csrf_token %}
+
+            <button type="submit">
+                Mark as Resolved
+            </button>
+        </form>
+
+    {% endif %}
+
+{% endif %}
+
+<br><br>
+
+<a href="{% url 'reports' %}">
+    Back to All Reports
+</a>
+
+{% endblock %}
